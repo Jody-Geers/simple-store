@@ -13,34 +13,37 @@
 	// provider on store
 	store.Cars.get(null, function( cars ) {
 	});
-	
+
 	// model on store
-    	var car = new store.Cars({
-	  id: 30,
-	  year: '2020',
-	  make: 'yippie',
-	  model: 'kayay'
+	var car = new store.Cars({
+		id: 30,
+		year: '2020',
+		make: 'yippie',
+		model: 'kayay'
 	});
-	
+
 	// provider on obj
 	car.save( null, function( err, res ) {
+	
 		if ( err ) {
 			// Who wants some?
 			return;
 		}
+		
 		// Groovy!
+		
 	});
 	
 	// extend for context
-    	function CtxCar( args ) {
-      		this.uiId = args.uiId || undefined,
+	function CtxCar( args ) {
+		this.uiId = args.uiId || undefined,
 		store.Cars.call( this, args );
 	}
 	CtxCar.prototype = Object.create( store.Cars.prototype );
 	CtxCar.prototype.constructor = CtxCar;
 	
 	// ctx obj
-    	var car = new CtxCar({
+	var car = new CtxCar({
 		id: 30,
 		year: '2020',
 		make: 'beautifulcar',
