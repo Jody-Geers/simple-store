@@ -3,21 +3,35 @@
   "description": "ikkle client-side store.",
 */
 
-function Store(args) {
-  var models = args.models;
-  var provider = args.provider;
+
+/**
+ * Binds models to provider to create store
+ * @param { array } args.models - available model defs
+ * @param { array } args.provider - available provider
+ * @return {Store} store - instantaneous client store
+ * @access public
+ */
+function Store( args ) {
+
+	var models = args.models;
+	var provider = args.provider;
     
-  // attach models to store then attach provider to Store and Instance
-  for (var key in models) {
-    var _def = new models[key]();
+	// attach models to store then attach provider to Store and Instance
+	for ( var modelsKey in models ) {
+
+		var instance = new models[modelsKey]();
 	
-    for (var kay in provider) {
-      models[key]['prototype'][kay] = provider[kay];
-        models[key][kay] = provider[kay];
-    }
+		for ( var providerKey in provider ) {
+			
+			models[modelsKey]['prototype'][providerKey] = provider[providerKey];
+			
+			models[modelsKey][providerKey] = provider[providerKey];
+			
+		}
         
-    this[_def.meta.storeName] = models[key];
-  }
+		this[instance.meta.storeName] = models[modelsKey];
+		
+	}
 
 };
 
