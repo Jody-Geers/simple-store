@@ -3,25 +3,34 @@
   "description": "ikkle client-side store.",
 */
 
+
 // here we define client / server storage - note: storeLocation in obj meta.
 // just use an ajax request to get data from server. if needed of course. 
 // args will have object filteres later used getting setting data
 
-function get(args, cb) {
-  var Store = require('../index.js');
-  var returnModelResultSet = [];
-  var rawResultSet = require('./_dummy-data/' + this.name);
 
-  for (var key in rawResultSet) {
-    returnModelResultSet.push(
-      new Store[this.name](rawResultSet[key])
-    );
-  }
+/**
+ * get data
+ * @return {array} || {obj}
+ * @access public
+ */
+function get( args, cb ) {
+  
+    var Store = require( '../index.js' );
+    var returnModelResultSet = [];
+    var rawResultSet = require( './_dummy-data/' + this.name );
 
-  if (cb)
-    cb(returnModelResultSet);
-  else
-    return returnModelResultSet;
+    // create model instance from raw data
+    for ( var key in rawResultSet ) {
+        returnModelResultSet.push( new Store[this.name]( rawResultSet[key] ) );
+    }
+
+    // return
+    if ( cb )
+        cb( returnModelResultSet );
+    else
+        return returnModelResultSet;
+
 };
 
 function save(args, cb) {
@@ -34,6 +43,8 @@ function del(args, cb) {
   debugger;
 };
 
+
+// make API public
 module.exports.get = get;
 module.exports.save = save;
 module.exports.del = del;
