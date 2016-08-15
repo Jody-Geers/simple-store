@@ -18,6 +18,9 @@ function get( args, cb ) {
   
     var Store = require( '../index.js' );
     var returnModelResultSet = [];
+    
+    // get data from source based off context model's meta storeLocation
+    // NOTE: use ajax for server or localStorage for browser - this is dummy data
     var rawResultSet = require( './_dummy-data/' + this.name );
 
     // create model instance from raw data
