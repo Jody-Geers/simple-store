@@ -1,6 +1,8 @@
 # simple-store
 
-  Cute ikkle client-side store i like to use.
+  Very lightweight client side store.
+  
+  Based off object meta defined in its 'model' will either persist locally to browser or remotely to server.
 
 ## Installation
 
