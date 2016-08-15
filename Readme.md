@@ -11,11 +11,11 @@
 ## API
 
 	// provider on store
-	store.Cars.get(null, function(cars) {
+	store.Cars.get(null, function( cars ) {
 	});
 	
 	// model on store
-    var car = new store.Cars({
+    	var car = new store.Cars({
 	  id: 30,
 	  year: '2020',
 	  make: 'yippie',
@@ -23,8 +23,8 @@
 	});
 	
 	// provider on obj
-	car.save(null, function(err, res) {
-		if (err) {
+	car.save( null, function( err, res ) {
+		if ( err ) {
 			// Who wants some?
 			return;
 		}
@@ -32,19 +32,20 @@
 	});
 	
 	// extend for context
-    function CtxCar(args) {
-      this.uiId = args.uiId || undefined,
-      store.Cars.call(this, args);
-    }
-    CtxCar.prototype = Object.create(store.Cars.prototype);
-    CtxCar.prototype.constructor = CtxCar;
+    	function CtxCar( args ) {
+      		this.uiId = args.uiId || undefined,
+		store.Cars.call( this, args );
+	}
+	CtxCar.prototype = Object.create( store.Cars.prototype );
+	CtxCar.prototype.constructor = CtxCar;
 	
-    var car = new CtxCar({
-	  id: 30,
-	  year: '2020',
-	  make: 'beautifulcar',
-	  model: 'comegetsome',
-	  uiId: 42
+	// ctx obj
+    	var car = new CtxCar({
+		id: 30,
+		year: '2020',
+		make: 'beautifulcar',
+		model: 'comegetsome',
+		uiId: 42
 	});
 
 ## Note
